@@ -12,18 +12,15 @@ var router = require('koa-router')(),
 
 module.exports = function(app) {
 
-    // index
+    // index route
     router.get('/', function *() {
-
-        console.log(JSON.stringify(router.stack.routes));
-
         this.body = yield render('index.html', {
             siteName: 'ADvanSB',
-            /* helper: list of routes and methods */
             routes  : router.stack.routes
         });
     });
 
+    // REST routes
     require('./packets')(app, router);
 
     return router;
