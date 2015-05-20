@@ -1,9 +1,5 @@
 /**
  *
- * ADvanSB -
- * Created By: scotty
- * Date: 19/05/2015 19:15
- *
  * This config loader allows multiple nested configs that
  * inherit from a parent. The root config, all.js, is loaded
  * first. Then, for each item in a hyphen-separated NODE_ENV,

@@ -1,10 +1,3 @@
-/**
- *
- * ADvanSB -
- * Created By: scotty
- * Date: 19/05/2015 20:36
- *
- */
 'use strict';
 
 var app = require('koa')();

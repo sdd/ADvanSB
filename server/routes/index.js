@@ -1,10 +1,3 @@
-/**
- *
- * ADvanSB -
- * Created By: scotty
- * Date: 19/05/2015 22:43
- *
- */
 'use strict';
 var router = require('koa-router')(),
     views = require('co-views'),

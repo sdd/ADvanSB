@@ -1,10 +1,3 @@
-/**
- *
- * ADvanSB -
- * Created By: scotty
- * Date: 19/05/2015 22:23
- *
- */
 'use strict';
 var compose = require('koa-compose'),
     views = require('co-views');
