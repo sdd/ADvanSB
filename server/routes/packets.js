@@ -1,11 +1,49 @@
-"use strict";
+'use strict';
+var parse = require('co-body');
 
-module.exports = function(app, router) {
+module.exports = function(app, router, seneca) {
 
-    var db = require('../db')(app.config.db);
-    var Packet = require('../models/packet')(db);
+    router.get('/state', function* stateGet() {
+        const state = yield seneca.actAsync({
+            system: 'ADSB',
+            action: 'getState'
+        });
 
-    router.get('/packets', function *() {
-        this.body = yield Packet.find({}).limit(10);
+        this.body = state ;
+    });
+
+    router.post('/packet', function* packetPost() {
+
+        const authResult = yield seneca.actAsync({
+            system: 'apiKey',
+            action: 'validate',
+            id: this.query.apiKey
+        });
+
+        if (!authResult.success) {
+            this.status = 500;
+            return;
+        }
+
+        if (!authResult.valid) {
+            this.status= 401;
+            return;
+        }
+
+        var packet = yield parse(this);
+
+        packet.message.received = packet.received;
+
+        const statePushResult = yield seneca.actAsync({
+            system: 'ADSB',
+            action: 'submitMessage',
+            message: packet.message
+        });
+
+        if (!statePushResult.success) {
+            this.status = 500;
+        } else {
+            this.status = 200;
+        }
     });
 };

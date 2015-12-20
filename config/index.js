@@ -13,8 +13,7 @@
  */
 'use strict';
 
-var _ = require('lodash'),
-    fs = require('fs');
+var _ = require('lodash');
 
 var envs = (process.env.NODE_ENV || 'dev').split('-');
 
