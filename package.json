@@ -10,6 +10,8 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "adsb-message-integrator": "^0.2.0",
+    "alt-apikey-seneca": "0.0.3",
     "co-body": "latest",
     "co-monk": "^1.0.0",
     "co-views": "^0.3.0",
